@@ -17,7 +17,11 @@ from langchain.vectorstores import FAISS
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langserve import RemoteRunnable
+import re
 
+def strip_html_tags(text):
+    return re.sub(r'<.*?>', '', text)
+    
 def tiktoken_len(text):
     tokenizer = tiktoken.get_encoding("cl100k_base")
     tokens = tokenizer.encode(text)
@@ -154,7 +158,9 @@ def main():
                 for chunk in answer:
                     chunks.append(chunk)
                     #chat_container.markdown("".join(chunks))
-                    chat_container.write("".join(chunks))
+                    clean_text = strip_html_tags("".join(chunks))
+                    chat_container.markdown(clean_text)
+                    #chat_container.write("".join(chunks))
                 add_history("ai", "".join(chunks))
 
             else:
@@ -170,7 +176,9 @@ def main():
                 for chunk in answer:
                     chunks.append(chunk)
                     #chat_container.markdown("".join(chunks))
-                    chat_container.write("".join(chunks))
+                    clean_text = strip_html_tags("".join(chunks))
+                    chat_container.markdown(clean_text)
+                    #chat_container.write("".join(chunks))
                 add_history("ai", "".join(chunks))
 
 if __name__ == '__main__':
