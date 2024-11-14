@@ -131,7 +131,7 @@ def main():
         st.chat_message("user").write(f"{user_input}")
         with st.chat_message("assistant"):
 
-            llm = RemoteRunnable("https://b5dc-222-107-175-176.ngrok-free.app/llm/")
+            llm = RemoteRunnable("https://blowfish-becoming-bluebird.ngrok-free.app/llm/")
             chat_container = st.empty()
 
             if st.session_state.processComplete==True:
