@@ -153,7 +153,8 @@ def main():
                 chunks = []
                 for chunk in answer:
                     chunks.append(chunk)
-                    chat_container.markdown("".join(chunks))
+                    #chat_container.markdown("".join(chunks))
+                    chat_container.write("".join(chunks))
                 add_history("ai", "".join(chunks))
 
             else:
@@ -168,7 +169,8 @@ def main():
                 chunks = []
                 for chunk in answer:
                     chunks.append(chunk)
-                    chat_container.markdown("".join(chunks))
+                    #chat_container.markdown("".join(chunks))
+                    chat_container.write("".join(chunks))
                 add_history("ai", "".join(chunks))
 
 if __name__ == '__main__':
